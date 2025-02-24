@@ -5,7 +5,6 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 import os
-import numbers
 
 app = Flask(__name__)
 
