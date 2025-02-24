@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetic Reaction Simulation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+
+{% if error %}
+<div id="error">
+    <h1>{{error}}</h1>
+</div>
+{% endif %}
+
+<form action="/reaction/" method="post">
+    <label for="name">Order of reaction</label>
+    <select name="order" id="name" >
+        <option value="zero" {% if order == 'zero' %} selected {% endif %} >zero</option>
+        <option value="one" {% if order == 'one' %} selected {% endif %}>one</option>
+        <option value="two" {% if order == 'two' %} selected {% endif %}>two</option>
+    </select>
+    <label for="rate">Rate constant of reaction (/s)</label>
+    <input type="text" name="rate" value="{{ rate if rate else '0.1' }}">
+
+    <label for="concentration">Initial concentration of reaction (mol/L)</label>
+    <input type="text" name="concentration" value="{{ concentration if concentration else '10' }}">
+
+
+    <label for="time">Time range for simulation (s)</label>
+    <input type="text" name="time" value="{{ time if time else '50' }}">
+
+
+    <input type="submit" value="go">
+</form>
+
+    <img src="{{ url_for('static', filename='images/figure.png') }}" alt="Graph">
+
+
+</body>
+</html>
